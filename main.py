@@ -1,16 +1,27 @@
+from os import write
 import nltk
+import re
 
-# download tokenization model
-nltk.download("punkt")
+from nltk.util import tokenwrap
 
-# read text
-text = None
-with open("text.txt", encoding="cp1252") as file:
-    # just read 100 bytes for now
-    text = file.read(10000)
+def tokenize():
+    # download tokenization model
+    nltk.download("punkt")
 
-tokens = nltk.word_tokenize(text)
-print(tokens)
+    # clean text
+    text = None
+    with open("frederickdouglasstext.txt", encoding="cp1252") as file:
+        text = file.read()
+        # ignores special characters such as �
+        # lowercases all characters
+        text = text.encode("ascii", "ignore").decode().lower()
 
-# how to deal with special characters? (ÊÊÊÊÊÊÊÊ)
-# then do a set intersection of text and known words w/ words that are lowercased
+    tokens = nltk.word_tokenize(text)
+    print(tokens[:1000])
+
+    regexp = re.compile("[^A-Za-z0-9-]")
+
+    with open("tokens.txt", "w") as outfile:
+        outfile.write("\n".join([token for token in tokens if not regexp.search(token)]))
+
+tokenize()
