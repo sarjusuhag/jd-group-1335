@@ -19,9 +19,19 @@ def tokenize():
     tokens = nltk.word_tokenize(text)
     print(tokens[:1000])
 
-    regexp = re.compile("[^A-Za-z0-9-]")
+    # containing invalid chars
+    regexp1 = re.compile("[^A-Za-z0-9-]")
+
+    # containing only -- or -
+    regexp2 = re.compile('^-+$|^\d+$')
+
+    # extract words that match the 
+    validWords = filter(lambda x: not regexp1.search(x) and not regexp2.search(x), tokens)
+    validWords = map(lambda x: x.lower(), validWords)
+    validWords = set(validWords)
 
     with open("tokens.txt", "w") as outfile:
-        outfile.write("\n".join([token for token in tokens if not regexp.search(token)]))
+        # outfile.write("\n".join([token for token in tokens if not regexp.search(token)]))
+        outfile.write('\n'.join(validWords))
 
 tokenize()
