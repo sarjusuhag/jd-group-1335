@@ -17,19 +17,19 @@ def tokenize():
         # lowercases all characters
         text = text.encode("ascii", "ignore").decode().lower()
 
+    # split text into tokens
     tokens = nltk.word_tokenize(text)
 
-    # containing invalid chars
+    # drop out words containing invalid chars
     regexp1 = re.compile("[^A-Za-z0-9-']")
 
-    # containing only -- or - or numbers or ''
+    # drop out words containing only -- or - or numbers or ''
     regexp2 = re.compile("^-+$|^\d+$|^'+$")
 
     # extract words that match the
     validWords = filter(
         lambda x: not regexp1.search(x) and not regexp2.search(x), tokens
     )
-    validWords = map(lambda x: x.lower(), validWords)
 
     # combine apostrophes
     apostropheWords = []
