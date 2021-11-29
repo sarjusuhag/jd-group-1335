@@ -11,7 +11,7 @@ def tokenize():
 
     # clean text
     text = None
-    with open("./assets/frederick_douglass_text.txt", encoding="cp1252") as file:
+    with open("./assets/text_to_parse/text.txt", encoding="cp1252") as file:
         text = file.read()
         # ignores special characters such as �
         # lowercases all characters
@@ -46,7 +46,7 @@ def tokenize():
 
 def write_nonrecorded():
     with open("./assets/out/tokens.txt", "r") as token_file, open(
-        "./assets/recorded_words.txt", "r"
+        "./assets/text_to_parse/recorded_words.txt", "r"
     ) as recorded_words_file:
         tokens = set([line.rstrip() for line in token_file.readlines()])
         recorded_words = set(
