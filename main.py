@@ -40,13 +40,12 @@ def tokenize():
             apostropheWords.append(word)
     validWords = sorted(set(apostropheWords))
 
-    with open("tokens.txt", "w") as outfile:
-        # outfile.write("\n".join([token for token in tokens if not regexp.search(token)]))
+    with open("./assets/out/tokens.txt", mode="w") as outfile:
         outfile.write("\n".join(validWords))
 
 
 def write_nonrecorded():
-    with open("tokens.txt", "r") as token_file, open(
+    with open("./assets/out/tokens.txt", "r") as token_file, open(
         "./assets/recorded_words.txt", "r"
     ) as recorded_words_file:
         tokens = set([line.rstrip() for line in token_file.readlines()])
@@ -56,7 +55,7 @@ def write_nonrecorded():
 
         to_record = sorted(tokens.difference(recorded_words))
 
-        with open("to_record_words.txt", "w") as to_record_file:
+        with open("./assets/out/to_record_words.txt", "w") as to_record_file:
             to_record_file.write("\n".join(to_record))
 
 
