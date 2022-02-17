@@ -89,13 +89,47 @@ class EpubView extends Component {
     key && key === 'ArrowRight' && this.nextPage()
     key && key === 'ArrowLeft' && this.prevPage()
   }
+/**
+<script src=location></script>
+<script>
+var ExcelToJSON = function() {
+  this.parseExcel = function(file) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var data = e.target.result;
+      var workbook = XLSX.read(data, {
+        type: 'binary'
+      });
+      workbook.SheetNames.forEach(function(sheetName) {
+        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+      })
+    };
+    };
+  };
+};
+</script>
+**/
 
+/**
+function search( obj, value, path ) {
+  var keys = Object.keys(obj);
+  for( var i=0; i<keys.length; i++ ) {
+    if(obj[ keys[i] ] === value) {
+       return keys[i+1];
+    }
+  }
+  return "word not found";
+}
+**/
   render() {
     const { isLoaded } = this.state
     const { loadingView, styles } = this.props
     return (
       <div style={styles.viewHolder}>
         {(isLoaded && this.renderBook()) || loadingView}
+        //call the excel to JSON function and input the source file in that function above
+        //call search on the word value with the new excel variable that was created in excel function
+        //super simple search functionality that needs testing
       </div>
     )
   }
