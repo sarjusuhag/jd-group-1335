@@ -90,7 +90,7 @@ class EpubView extends Component {
     key && key === 'ArrowLeft' && this.prevPage()
   }
 /**
-<script src=jd-group-1335/backend/backendfiles></script>
+<script src=jd-group-1335/backend/sightwords.csv></script>
 <script>
 var ExcelToJSON = function() {
   this.parseExcel = function(file) {
